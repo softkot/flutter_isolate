@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'dart:io';
-import 'dart:convert';
-import 'package:flutter/services.dart';
+
+import 'background.dart';
 
 void main() => runApp(MyApp());
+void bgmain() => initBackground();
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -35,18 +34,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    platformChannels();
+    BackgroundPlugin.method1("1234", "abcd").then((v) {
+      print(v.toString());
+    });
   }
-}
-
-void platformChannels() {
-  print("Start platform channels test");
-  MethodChannel pluginMethods = const MethodChannel('methods');
-  EventChannel pluginEvents = const EventChannel('events');
-  pluginEvents.receiveBroadcastStream().listen((data) {
-    print(data);
-  });
-  Timer.periodic(Duration(seconds: 1), (timer) {
-    pluginMethods.invokeMethod("tick", {});
-  });
 }

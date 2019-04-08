@@ -10,8 +10,7 @@ import io.flutter.plugins.GeneratedPluginRegistrant
 class MainActivity : FlutterActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        BackgroundPlugin.registerWith(this.registrarFor("background_plugin"))
         GeneratedPluginRegistrant.registerWith(this)
-        Plugin(this,"Activity")
-        startService(Intent(this,PluginService::class.java))
     }
 }
