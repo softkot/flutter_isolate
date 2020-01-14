@@ -40,6 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 void platformChannels() {
+  WidgetsFlutterBinding.ensureInitialized();
   print("Start platform channels test");
   MethodChannel pluginMethods = const MethodChannel('methods');
   EventChannel pluginEvents = const EventChannel('events');
